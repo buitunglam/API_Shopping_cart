@@ -1,0 +1,31 @@
+{
+  "name": "api_shopping_cart",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buitunglam/API_Shopping_cart.git"
+  },
+  "author": "y",
+  "license": "MIT",
+  "private": false,
+  "bugs": {
+    "url": "https://github.com/buitunglam/API_Shopping_cart/issues"
+  },
+  "homepage": "https://github.com/buitunglam/API_Shopping_cart#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.8",
+    "nodemon": "^2.0.13",
+    "stripe": "^8.179.0"
+  }
+}
