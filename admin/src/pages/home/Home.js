@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Chart from 'components/Chart/Chart';
 import WidgetLarge from 'components/WidgetLarge/WidgetLarge';
 import WidgetSmall from 'components/WidgetSmall/WidgetSmall';
@@ -10,7 +11,12 @@ const Home = () => {
   return (
     <div className="homeContainer">
       <FeaturedInfo />
-      <Chart data={userData} title="User Analytics" dataKey="Active User" grid />
+      <Chart
+        data={userData}
+        title="User Analytics"
+        dataKey="Active User"
+        grid
+      />
       <div className="homeWidgets">
         <WidgetSmall />
         <WidgetLarge />

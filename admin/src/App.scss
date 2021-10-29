@@ -1,4 +1,9 @@
 .container{
   display: flex;
   margin-top: 10px;
+  .link {
+    list-style: none;
+    color: #555;
+    text-decoration: none;
+  }
 }
