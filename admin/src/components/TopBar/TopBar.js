@@ -1,13 +1,16 @@
 import React from "react";
 import './TopBar.scss';
 import { NotificationsNone, Language, Settings } from '@mui/icons-material';
+import {Link} from 'react-router-dom';
 
 const TopBar = () => {
   return (
     <div className="topBar">
       <div className="topBarWrapper">
         <div className="topLeft">
-          <img src="https://bizweb.dktcdn.net/100/339/085/themes/699262/assets/logo.png?1624497451198" alt="logo" className="logo"/>
+          <Link to="/" className="link">
+            <img src="https://bizweb.dktcdn.net/100/339/085/themes/699262/assets/logo.png?1624497451198" alt="logo" className="logo" />
+          </Link>
         </div>
         <div className="topRight">
           <div className="topBarIconContainer">

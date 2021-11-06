@@ -1,91 +1,47 @@
 import { Visibility } from '@mui/icons-material';
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { userRequest } from 'service/baseRequest';
 import "./WidgetSmall.scss";
 
 const WidgetSmall = () => {
+
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    const getUsers = async () => {
+      try {
+        const res = await userRequest.get("users/?new=true");
+        console.log('res..', res.data);
+        setUsers(res.data);
+      } catch (error) {
+        console.log('user error..', error);
+      }
+    }
+    getUsers();
+  }, []);
+
   return (
     <div className="widgetSmallContainer">
-      <span class="widgetSmallTitle">New join member</span>
-      <ul class="widgetSmallList">
-        <li class="widgetSmallListItem">
-          <img 
-            src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500"
-            alt=""
-            className="widgetSmallImg"
-          />
-          <div class="widgetSmallUser">
-            <span class="widgetSmallUserName">Anna Keller</span>
-            <span class="widgetSmallUserTitle">Software Engineer</span>
-          </div>
-          <button class="widgetSmallButton">
-            <Visibility className="widgetSmallIcon"/>
-            Display
-          </button>
-        </li>
-
-        <li class="widgetSmallListItem">
-          <img 
-            src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500"
-            alt=""
-            className="widgetSmallImg"
-          />
-          <div class="widgetSmallUser">
-            <span class="widgetSmallUserName">Anna Keller</span>
-            <span class="widgetSmallUserTitle">Software Engineer</span>
-          </div>
-          <button class="widgetSmallButton">
-            <Visibility className="widgetSmallIcon"/>
-            Display
-          </button>
-        </li>
-
-        <li class="widgetSmallListItem">
-          <img 
-            src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500"
-            alt=""
-            className="widgetSmallImg"
-          />
-          <div class="widgetSmallUser">
-            <span class="widgetSmallUserName">Anna Keller</span>
-            <span class="widgetSmallUserTitle">Software Engineer</span>
-          </div>
-          <button class="widgetSmallButton">
-            <Visibility className="widgetSmallIcon"/>
-            Display
-          </button>
-        </li>
-
-        <li class="widgetSmallListItem">
-          <img 
-            src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500"
-            alt=""
-            className="widgetSmallImg"
-          />
-          <div class="widgetSmallUser">
-            <span class="widgetSmallUserName">Anna Keller</span>
-            <span class="widgetSmallUserTitle">Software Engineer</span>
-          </div>
-          <button class="widgetSmallButton">
-            <Visibility className="widgetSmallIcon"/>
-            Display
-          </button>
-        </li>
-
-        <li class="widgetSmallListItem">
-          <img 
-            src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500"
-            alt=""
-            className="widgetSmallImg"
-          />
-          <div class="widgetSmallUser">
-            <span class="widgetSmallUserName">Anna Keller</span>
-            <span class="widgetSmallUserTitle">Software Engineer</span>
-          </div>
-          <button class="widgetSmallButton">
-            <Visibility className="widgetSmallIcon"/>
-            Display
-          </button>
-        </li>
+      <span className="widgetSmallTitle">New join member</span>
+      <ul className="widgetSmallList">
+        {
+          users.map(user => (
+            <li key={user?._id} className="widgetSmallListItem">
+              <img
+                src={user?.img || "https://crowd-literature.eu/wp-content/uploads/2015/01/no-avatar.gif"}
+                alt="avatar user"
+                className="widgetSmallImg"
+              />
+              <div className="widgetSmallUser">
+                <span className="widgetSmallUserName">{user?.username}</span>
+                <span className="widgetSmallUserTitle">Software Engineer</span>
+              </div>
+              <button className="widgetSmallButton">
+                <Visibility className="widgetSmallIcon" />
+                Display
+              </button>
+            </li>
+          ))
+        }
       </ul>
     </div>
   )

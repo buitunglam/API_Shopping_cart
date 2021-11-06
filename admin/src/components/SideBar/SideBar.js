@@ -20,10 +20,12 @@ const SideBar = () => {
         <div className="sideBarMenu">
           <h3 className="sideBarTitle">Dash Board</h3>
           <ul className="sideBarList">
-            <li className="sideBarlistItem active">
-              <LineStyle className="sideBarIcon" />
-              Home
-            </li>
+            <Link to="/" className="link">
+              <li className="sideBarlistItem active">
+                <LineStyle className="sideBarIcon" />
+                Home
+              </li>
+            </Link>
             <li className="sideBarlistItem">
               <Timeline className="sideBarIcon" />
               Analystics

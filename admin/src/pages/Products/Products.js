@@ -1,30 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Products.scss';
 import { DataGrid } from '@mui/x-data-grid';
 import { DeleteOutline } from '@mui/icons-material';
 import { productRows } from 'Ultils/dummyData';
 import { Link } from 'react-router-dom';
+import { getProducts } from 'service/apiCalls';
+import {useDispatch, useSelector} from 'react-redux';
 
 const Products = () => {
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
+    { field: '_id', headerName: 'ID', width: 220 },
     {
-      field: 'product', headerName: 'Product', width: 200, renderCell: (params) => {
+      field: 'product', headerName: 'Product', width: 220, renderCell: (params) => {
         return (
           <div className="listProduct">
             <img className="productListImg" src={params.row.img} alt="" />
-            {params.row.name}
+            {params.row.title}
           </div>
         )
       }
     },
-    { field: 'stock', headerName: 'Stock', width: 120 },
-    {
-      field: 'status',
-      headerName: 'Status',
-      // type: 'number',
-      width: 120,
-    },
+    { field: 'inStock', headerName: 'Stock', width: 120 },
     {
       field: 'price',
       headerName: 'Price',
@@ -51,6 +47,15 @@ const Products = () => {
   ];
 
   const [data, setData] = useState(productRows);
+ const dispatch = useDispatch();
+ const productsList = useSelector(state => state.products.productsList);
+  useEffect(() => {
+    getProducts(dispatch);
+  }, []);
+
+  // useEffect(() => {
+  //   setProduct
+  // }, [productsList]);
 
   const handleDelete = (id) => {
     setData(data.filter(item => item.id !== id));
@@ -59,7 +64,8 @@ const Products = () => {
   return (
     <div className="productsContainer">
       <DataGrid
-        rows={data}
+        rows={productsList}
+        getRowId={(row) => row._id}
         columns={columns}
         pageSize={8}
         rowsPerPageOptions={[5]}
