@@ -4,7 +4,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { DeleteOutline } from '@mui/icons-material';
 import { productRows } from 'Ultils/dummyData';
 import { Link } from 'react-router-dom';
-import { getProducts } from 'service/apiCalls';
+import { getProducts, deleteProduct } from 'service/apiCalls';
 import {useDispatch, useSelector} from 'react-redux';
 
 const Products = () => {
@@ -39,7 +39,7 @@ const Products = () => {
             >
               <button className="productListEdit">Edit</button>
             </Link>
-            <DeleteOutline className="productListDelete" onClick={() => handleDelete(params.row.id)} />
+            <DeleteOutline className="productListDelete" onClick={() => handleDelete(params.row._id)} />
           </>
         )
       }
@@ -58,7 +58,8 @@ const Products = () => {
   // }, [productsList]);
 
   const handleDelete = (id) => {
-    setData(data.filter(item => item.id !== id));
+    // setData(data.filter(item => item.id !== id));
+    deleteProduct(dispatch, id)
   }
   
   return (

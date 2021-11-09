@@ -1,4 +1,4 @@
-import { getProductStart, getProductSuccess, getProductFailed } from "redux/productRedux";
+import { getProductStart, getProductSuccess, getProductFailed, deleteProductSuccess, deleteProductStart, deleteProductFailed } from "redux/productRedux";
 import { loginStart, loginSuccess, loginFailure } from "redux/userRedux";
 import { publicRequest } from "./baseRequest";
 
@@ -29,5 +29,20 @@ export const getProducts = async (dispatch) => {
         status: error.response.status,
       })
     );
+  }
+};
+
+export const deleteProduct = async (dispatch, id) => {
+  dispatch(deleteProductStart());
+  try {
+    // const res = await publicRequest.delete(`/products/${id}`);
+    dispatch(deleteProductSuccess(id));
+  } catch (error) {
+    // dispatch(
+    //   deleteProductFailed({
+    //     message: error.response.data,
+    //     status: error.response.status,
+    //   })
+    // );
   }
 };
